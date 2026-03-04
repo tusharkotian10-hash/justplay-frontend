@@ -177,14 +177,40 @@
     if (on) document.getElementById('loading').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  function showResult(movie) {
+
+  document.getElementById('res-title').textContent = movie.title;
+
   document.getElementById('res-metas').innerHTML = [
-  `<span class="meta-pill">🎬 ${movie.genre}</span>`,
-  `<span class="meta-pill">📅 ${movie.year}</span>`,
-  `<span class="meta-pill">⭐ IMDb ${movie.imdbRating || 'N/A'}</span>`,
-  `<span class="meta-pill">⏱️ ${movie.duration}</span>`,
-  `<span class="meta-pill accent-pill">📺 ${movie.platform}</span>`,
-  `<span class="meta-pill">🌐 ${movie.language}</span>`
-].join('');
+    `<span class="meta-pill">🎬 ${movie.genre}</span>`,
+    `<span class="meta-pill">📅 ${movie.year}</span>`,
+    `<span class="meta-pill">⭐ IMDb ${movie.imdbRating || 'N/A'}</span>`,
+    `<span class="meta-pill">⏱️ ${movie.duration}</span>`,
+    `<span class="meta-pill accent-pill">📺 ${movie.platform}</span>`,
+    `<span class="meta-pill">🌐 ${movie.language}</span>`
+  ].join('');
+
+  document.getElementById('res-reason').textContent = movie.reason;
+
+  // Reset stars
+  document.querySelectorAll('.star').forEach(s => s.textContent = '☆');
+  document.getElementById('rating-thanks').style.display = 'none';
+
+  // Reset poster
+  document.getElementById('poster-img').style.display = 'none';
+  document.getElementById('poster-placeholder').style.display = 'flex';
+
+  const el = document.getElementById('result');
+  el.style.display = 'block';
+
+  el.querySelector('.result-card').style.animation = 'none';
+
+  requestAnimationFrame(() => {
+    el.querySelector('.result-card').style.animation = '';
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+}
 
     // Reset stars & rating
     document.querySelectorAll('.star').forEach(s => s.textContent = '☆');
