@@ -792,16 +792,24 @@ nav {
   // Extra: sync profile picture on tab switch
   import { auth } from './src/firebase.js';
   import { onAuthChange } from './src/firebase.js';
-  onAuthChange(user => {
-    if (user) {
-      const pic = document.getElementById('profile-pic');
-      const name = document.getElementById('profile-name');
-      const email = document.getElementById('profile-email');
-      if (pic && user.photoURL) pic.src = user.photoURL;
-      if (name) name.textContent = user.displayName || 'Movie Lover';
-      if (email) email.textContent = user.email || '';
-    }
-  });
+  onAuthStateChanged(auth, user => {
+  currentUser = user;
+
+  if (user) {
+    showApp(user);
+
+    const pic = document.getElementById('profile-pic');
+    const name = document.getElementById('profile-name');
+    const email = document.getElementById('profile-email');
+
+    if (pic && user.photoURL) pic.src = user.photoURL;
+    if (name) name.textContent = user.displayName || 'Movie Lover';
+    if (email) email.textContent = user.email || '';
+
+  } else {
+    showLogin();
+  }
+});
 </script>
 
 </body>
