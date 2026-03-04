@@ -212,22 +212,7 @@
 
 }
 
-    // Reset stars & rating
-    document.querySelectorAll('.star').forEach(s => s.textContent = '☆');
-    document.getElementById('rating-thanks').style.display = 'none';
-
-    // Reset poster
-    document.getElementById('poster-img').style.display = 'none';
-    document.getElementById('poster-placeholder').style.display = 'flex';
-
-    const el = document.getElementById('result');
-    el.style.display = 'block';
-    el.querySelector('.result-card').style.animation = 'none';
-    requestAnimationFrame(() => {
-      el.querySelector('.result-card').style.animation = '';
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
+  
 
   function updatePoster(url) {
     const img = document.getElementById('poster-img');
