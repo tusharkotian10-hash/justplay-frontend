@@ -177,16 +177,14 @@
     if (on) document.getElementById('loading').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function showResult(movie) {
-    document.getElementById('res-title').textContent = movie.title;
-    document.getElementById('res-reason').textContent = `"${movie.reason}"`;
-    document.getElementById('res-metas').innerHTML = [
-      `<span class="meta-pill">🎬 ${movie.genre}</span>`,
-      `<span class="meta-pill">📅 ${movie.year}</span>`,
-      `<span class="meta-pill">⏱️ ${movie.duration}</span>`,
-      `<span class="meta-pill accent-pill">📺 ${movie.platform}</span>`,
-      `<span class="meta-pill">🌐 ${movie.language}</span>`,
-    ].join('');
+  document.getElementById('res-metas').innerHTML = [
+  `<span class="meta-pill">🎬 ${movie.genre}</span>`,
+  `<span class="meta-pill">📅 ${movie.year}</span>`,
+  `<span class="meta-pill">⭐ IMDb ${movie.imdbRating || 'N/A'}</span>`,
+  `<span class="meta-pill">⏱️ ${movie.duration}</span>`,
+  `<span class="meta-pill accent-pill">📺 ${movie.platform}</span>`,
+  `<span class="meta-pill">🌐 ${movie.language}</span>`
+].join('');
 
     // Reset stars & rating
     document.querySelectorAll('.star').forEach(s => s.textContent = '☆');
